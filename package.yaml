@@ -1,0 +1,19 @@
+name: cis194
+version: 0.0.1
+license: MIT
+copyright: (c) 2018 Zation
+author: Zation <zation@gmail.com>
+maintainer: Zation <zation@gmail.com>
+
+ghc-options: -Wall
+
+dependencies:
+ - base == 4.*
+
+library:
+  source-dirs: src
+
+tests:
+  spec:
+    defaults: hspec/hspec@master
+    dependencies: cis194
