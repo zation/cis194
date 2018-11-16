@@ -19,9 +19,8 @@ spec = do
     it "should sum by digit" $ sumDigits [16,1,22,3] `shouldBe` 15
     it "should sum empty array as 0" $ sumDigits [] `shouldBe` 0
   describe "validate" $ do
-    it "should be right" $ do
-      validate 4012888888881881 `shouldBe` True
-      validate 4012888888881882 `shouldBe` False
+    it "should mark 4012888888881881 as True" $ validate 4012888888881881 `shouldBe` True
+    it "should mark 4012888888881882 as False" $ validate 4012888888881882 `shouldBe` False
   describe "hanoi" $ do
     it "should calculate steps" $ do
       hanoi 3 "a" "b" "c" `shouldBe` [("a","b"),("a","c"),("b","c"),("a","b"),("c","a"),("c","b"),("a","b")]

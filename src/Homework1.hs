@@ -3,10 +3,12 @@ module Homework1 where
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev number
   | number <= 0 = []
-  | otherwise = number - number `div` 10 * 10 : toDigitsRev (number `div` 10)
+  | otherwise = number `mod` 10 : toDigitsRev (number `div` 10)
 
 toDigits :: Integer -> [Integer]
-toDigits number = reverse (toDigitsRev number)
+toDigits number
+  | number <= 0 = []
+  | otherwise = toDigits (number `div` 10) ++ [number `mod` 10]
 
 doubleEveryOtherRev :: [Integer] -> [Integer]
 doubleEveryOtherRev [] = []
@@ -19,14 +21,12 @@ doubleEveryOther = reverse . doubleEveryOtherRev . reverse
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
 sumDigits [x] = x
-sumDigits (first:second:rest)
-  | first > 9 || second > 9 = sumDigits ( sumDigits (toDigits first) : sumDigits (toDigits second) : rest)
-  | otherwise = first + second + sumDigits rest
+sumDigits (number:rest)
+  | number > 9 = sumDigits (toDigits number ++ rest)
+  | otherwise = number + sumDigits rest
 
 validate :: Integer -> Bool
-validate number =
-  (result `div` 10) * 10 == result
-  where result = sumDigits ( doubleEveryOther ( toDigits number ) )
+validate number = (sumDigits . doubleEveryOther . toDigits) number `mod` 10 == 0
 
 type Peg = String
 type Move = (Peg, Peg)
