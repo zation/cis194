@@ -11,3 +11,10 @@ parseMessage message = case words message of
 
 parse :: String -> [LogMessage]
 parse = map parseMessage . lines
+
+insert :: LogMessage -> MessageTree -> MessageTree
+insert (Unknown _) messageTree = messageTree
+insert logMessage Leaf = Node Leaf logMessage Leaf
+insert newLogMessage@(LogMessage _ newTimeStamp _) (Node left logMessage@(LogMessage _ timeStamp _) right)
+  | newTimeStamp > timeStamp = Node left logMessage (Node Leaf newLogMessage Leaf)
+  | otherwise = Node (Node Leaf newLogMessage Leaf) logMessage right
