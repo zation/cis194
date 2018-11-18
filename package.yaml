@@ -11,7 +11,9 @@ dependencies:
  - base == 4.*
 
 library:
-  source-dirs: src
+  source-dirs:
+    - src
+    - lib
 
 tests:
   spec:

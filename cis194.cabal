@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e53c5e09e77bf714c6d6f5dc161bc90d0ba0164e1012911fd759319b8ccc1ff1
+-- hash: 91ef3b9af12646cd9166e538b2c4927022e4303243fdacf01a181fc8b0a7ed38
 
 name:           cis194
 version:        0.0.1
@@ -17,10 +17,13 @@ build-type:     Simple
 library
   exposed-modules:
       Homework1
+      Homework2
+      Log
   other-modules:
       Paths_cis194
   hs-source-dirs:
       src
+      lib
   ghc-options: -Wall
   build-depends:
       base ==4.*
@@ -31,6 +34,7 @@ test-suite spec
   main-is: Spec.hs
   other-modules:
       Homework1Spec
+      Homework2Spec
       Paths_cis194
   hs-source-dirs:
       test
